@@ -5,7 +5,6 @@ import logger from './util/logger';
 
 const server = app.listen(config.PORT);
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async () => {
   try {
     // Database connection
@@ -22,4 +21,6 @@ const server = app.listen(config.PORT);
       process.exit(1);
     });
   }
-})();
+})().catch((error: unknown) => {
+  logger.error('UNHANDLED_ERROR', { meta: { error } });
+});
