@@ -1,0 +1,11 @@
+{
+  "name": "ts-node-prod-setup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Amandeep Singh",
+  "license": "ISC",
+  "description": ""
+}
