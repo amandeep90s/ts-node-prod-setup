@@ -1,9 +1,13 @@
 import path from 'path';
+import * as sourceMapSupport from 'source-map-support';
 import util from 'util';
 import { createLogger, format, transports } from 'winston';
 import { ConsoleTransportInstance, FileTransportInstance } from 'winston/lib/winston/transports';
 import config from '../config/config';
 import { EApplicationEnvironment } from '../constant/application';
+
+// Linking trace support to the source map
+sourceMapSupport.install();
 
 const consoleLogFormat = format.printf((info) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
