@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import { Request } from 'express';
 import config from '../config/config';
 import { EApplicationEnvironment } from '../constant/application';
 import responseMessage from '../constant/responseMessage';
 import { THttpError } from '../types/types';
+import logger from './logger';
 
 export default (error: Error, req: Request, errorStatusCode: number = 500): THttpError => {
   const errorObj: THttpError = {
@@ -23,7 +23,7 @@ export default (error: Error, req: Request, errorStatusCode: number = 500): THtt
   };
 
   // Log
-  console.error('CONTROLLER_ERROR', { meta: errorObj });
+  logger.error('CONTROLLER_ERROR', { meta: errorObj });
 
   // Production ENV check
   if (config.ENV === EApplicationEnvironment.PRODUCTION) {

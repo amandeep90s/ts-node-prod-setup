@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 import { Request, Response } from 'express';
 import config from '../config/config';
 import { EApplicationEnvironment } from '../constant/application';
 import { THttpResponse } from '../types/types';
+import logger from './logger';
 
 export default (
   req: Request,
@@ -24,7 +24,7 @@ export default (
   };
 
   // Log
-  console.info('CONTROLLER_RESPONSE', { meta: response });
+  logger.info('CONTROLLER_RESPONSE', { meta: response });
 
   // Production ENV check
   if (config.ENV === EApplicationEnvironment.PRODUCTION) {
