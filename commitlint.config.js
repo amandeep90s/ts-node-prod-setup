@@ -15,9 +15,9 @@ module.exports = {
         'build', // build system or external dependencies
         'ci', // CI related changes
         'chore', // updating grunt tasks etc; no production code change
-        'revert', // reverting changes
-      ],
+        'revert' // reverting changes
+      ]
     ],
-    'subject-case': [2, 'always', 'sentence-case'], // sentence-case is the default value
-  },
+    'subject-case': [2, 'always', 'sentence-case'] // sentence-case is the default value
+  }
 };
