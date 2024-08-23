@@ -1,3 +1,4 @@
+import { blue, green, magenta, red, yellow } from 'colorette';
 import path from 'path';
 import * as sourceMapSupport from 'source-map-support';
 import util from 'util';
@@ -9,18 +10,32 @@ import { EApplicationEnvironment } from '../constant/application';
 // Linking trace support to the source map
 sourceMapSupport.install();
 
+const colorizeLevel = (level: string) => {
+  switch (level) {
+    case 'ERROR':
+      return red(level);
+    case 'INFO':
+      return blue(level);
+    case 'WARN':
+      return yellow(level);
+    default:
+      return level;
+  }
+};
+
 const consoleLogFormat = format.printf((info) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { level, message, timestamp, meta = {} } = info;
 
-  const customLevel = level.toUpperCase();
-  const customTimestamp = timestamp as string;
+  const customLevel = colorizeLevel(level.toUpperCase());
+  const customTimestamp = green(timestamp as string);
   const customMessage = message as string;
   const customMeta = util.inspect(meta, {
     showHidden: false,
-    depth: null
+    depth: null,
+    colors: true
   });
-  const customLog = `${customLevel} [${customTimestamp}] ${customMessage}\nMETA ${customMeta}\n`;
+  const customLog = `${customLevel} [${customTimestamp}] ${customMessage}\n${magenta('META')} ${customMeta}\n`;
 
   return customLog;
 });
