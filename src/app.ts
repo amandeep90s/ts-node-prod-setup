@@ -1,4 +1,5 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
+import helmet from 'helmet';
 import path from 'path';
 import responseMessage from './constant/responseMessage';
 import globalErrorHandler from './middleware/globalErrorHandler';
@@ -8,6 +9,7 @@ import httpError from './util/httpError';
 const app: Application = express();
 
 // Middleware
+app.use(helmet());
 app.use(express.json());
 
 // Static files
